@@ -4,9 +4,20 @@
 
 .container {
   max-width: 600px;
+  /*text-align: center;*/
   margin: 0 auto;
 }
 
 .hidden {
     display: none;
+}
+
+.videoChoices {
+    width: 25%;
+    /*margin: 0 auto;*/
+}
+
+.videoThumbnail {
+    height: 50px;
+    width: 100px;
 }

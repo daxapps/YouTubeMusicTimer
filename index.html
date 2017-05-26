@@ -13,22 +13,19 @@
 </head>
 <body>
   <main role="main">
-    <div class="contianer">
-      <h1>Choose a Type of Music</h1>
-      <form action="#" class="js-search-form">
-        <label for="query"></label>
-        <input type="text" name="query" class="js-query" id="query">
-        <button type="submit" id="search">Search</button>
-
-        <button type="submit" id="prevBtn" class="hidden">&lt;|</button>
-        <button type="submit" id="pauseBtn" class="hidden">Pause</button>
-        <button type="submit" id="nextBtn" class="hidden">|&gt</button>
+  <div class="container">
+      <form action="#" class="js-search-form" id="search">
+        <label for="search">Choose a Type of Music</label>
+        <input type="text" name="query" class="js-query" id="search">
+        <button type="submit" id="searchBtn">Search</button>
       </form>
-      <h2 class="hidden">Choose Music to Start With</h2>
-      <div class="js-search-results">
-        <button class="prev-page" hidden>Previous page</button>
-        <button class="next-page" hidden>Next page</button>
-        <ol class="video-results"></ol>
+      <section class="prev-next-buttons">
+        <h2 class="hidden">Choose Music to Start With</h2>
+        <button type="button" id="prevBtn" class="hide">previous</button>
+        <button type="button" id="nextBtn" class="hide">next</button>
+      </section>
+      <div class="img-container">
+        <!-- img placeholder -->
       </div>
     </div>
 

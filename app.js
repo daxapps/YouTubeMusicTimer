@@ -1,80 +1,148 @@
 
-var url = 'https://www.googleapis.com/youtube/v3/search';
-
-
-
-
-
-
-
-
-// 2. This code loads the IFrame Player API code asynchronously.
-var tag = document.createElement('script');
-
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-// 3. This function creates an <iframe> (and YouTube player)
-//    after the API code downloads.
-var player;
-function onYouTubeIframeAPIReady() {
-player = new YT.Player('player', {
-  height: '390',
-  width: '640',
-  videoId: 'M7lc1UVf-VE',
-  events: {
-    'onReady': onPlayerReady,
-    'onStateChange': onPlayerStateChange
-  }
-});
-}
-// 4. The API will call this function when the video player is ready.
-function onPlayerReady(event) {
-event.target.playVideo();
+var state = {
+    previous: null,
+    next: null,
+    results: false
 }
 
-// 5. The API calls this function when the player's state changes.
-//    The function indicates that when playing a video (state=1),
-//    the player should play for six seconds and then stop.
-var done = false;
-function onPlayerStateChange(event) {
-if (event.data == YT.PlayerState.PLAYING && !done) {
-  setTimeout(stopVideo, 6000);
-  done = true;
-}
+var base_url = "https://www.googleapis.com/youtube/v3/search?";
+
+function getData(searchTerm, callback, token) {
+    var query = {
+        key: 'AIzaSyBZw_Dg7LohwJhi_O7ZOOz--qFthIyVlFM',
+        q: searchTerm + " music",
+        part: 'snippet',
+        maxResults: 5,
+        pageToken: token
+    }
+    console.log(query);
+    $.getJSON(base_url, query, callback);
 }
 
-function stopVideo() {
-player.stopVideo();
+function displayData(data) {
+    var results = "";
+    console.log(data);
+
+    if (data.items) {
+        state.next = data.nextPageToken;
+        console.log("state.next", state.next);
+        state.previous = data.prevPageToken;
+        console.log("state.previous", state.previous);
+        state.results = true;
+
+        // items is specific to the YT API
+        data.items.map(function (video) {
+            results += `<div class="videoChoices">
+            <a href="https://www.youtube.com/watch?v=${video.id.videoId}" target="_self">${video.snippet.title}</a><br />
+            <img src="${video.snippet.thumbnails.medium.url}" class="videoThumbnail" /></div><br />`;
+        })
+    }
+    else {
+        if (state.results === false) {
+            $('.img-container').empty();
+        }
+        else {
+            results += "<p>no results</p>";
+        }
+    }
+
+    if (state.previous) {
+    
+        $('#prevBtn').removeClass('hide');
+    }
+
+    if (state.next) {
+        $('#nextBtn').removeClass('hide');
+        
+    }
+    
+    $('.img-container').html(results);
 }
 
-function playPauseVideo() {
-	console.log(player.getPlayerState())
-	if (player.getPlayerState() === 1) {
-		// runs if video playing
-		$('#pauseBtn').text('Start');
-		player.pauseVideo();
-	} else if (player.getPlayerState() === 2) {
-		// runs if video paused
-		$('#pauseBtn').text('Pause');
-		player.playVideo();
-	}
-}
-
-$('#pauseBtn').on('click', function(e){
-  e.preventDefault();
-  playPauseVideo();
+$('#search').submit(function (event) {
+    event.preventDefault();
+    var userInput = $('form input').val();
+    getData(userInput, displayData);
 })
 
-$('#prevBtn').on('click', function(e){
-  e.preventDefault();
-  console.log(player.getPlayerState())
-  player.previousVideo();
+$('#nextBtn').click(function (event) {
+    var userInput = $('form input').val();
+    getData(userInput, displayData, state.next);
 })
 
-$('#nextBtn').on('click', function(e){
-	e.preventDefault();
-	player.nextVideo();
+$('#prevBtn').click(function (event) {
+    var userInput = $('form input').val();
+    getData(userInput, displayData, state.previous);
 })
+
+
+// // 2. This code loads the IFrame Player API code asynchronously.
+// var tag = document.createElement('script');
+
+// tag.src = "https://www.youtube.com/iframe_api";
+// var firstScriptTag = document.getElementsByTagName('script')[0];
+// firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+// // 3. This function creates an <iframe> (and YouTube player)
+// //    after the API code downloads.
+// var player;
+// function onYouTubeIframeAPIReady() {
+// player = new YT.Player('player', {
+//   height: '390',
+//   width: '640',
+//   videoId: 'M7lc1UVf-VE',
+//   events: {
+//     'onReady': onPlayerReady,
+//     'onStateChange': onPlayerStateChange
+//   }
+// });
+// }
+// // 4. The API will call this function when the video player is ready.
+// function onPlayerReady(event) {
+// event.target.playVideo();
+// }
+
+// // 5. The API calls this function when the player's state changes.
+// //    The function indicates that when playing a video (state=1),
+// //    the player should play for six seconds and then stop.
+// var done = false;
+// function onPlayerStateChange(event) {
+// if (event.data == YT.PlayerState.PLAYING && !done) {
+//   setTimeout(stopVideo, 6000);
+//   done = true;
+// }
+// }
+
+// function stopVideo() {
+// player.stopVideo();
+// }
+
+// function playPauseVideo() {
+// 	console.log(player.getPlayerState())
+// 	if (player.getPlayerState() === 1) {
+// 		// runs if video playing
+// 		$('#pauseBtn').text('Start');
+// 		player.pauseVideo();
+// 	} else if (player.getPlayerState() === 2) {
+// 		// runs if video paused
+// 		$('#pauseBtn').text('Pause');
+// 		player.playVideo();
+// 	}
+// }
+
+// $('#pauseBtn').on('click', function(e){
+//   e.preventDefault();
+//   playPauseVideo();
+// })
+
+// $('#prevBtn').on('click', function(e){
+//   e.preventDefault();
+//   console.log(player.getPlayerState())
+//   player.previousVideo();
+// })
+
+// $('#nextBtn').on('click', function(e){
+// 	e.preventDefault();
+// 	player.nextVideo();
+// })
 
