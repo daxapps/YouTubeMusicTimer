@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Youtube Music Timer</title>
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <main role="main">
+    <div class="contianer">
+      <h1>Choose a Type of Music</h1>
+      <form action="#" class="js-search-form">
+        <label for="query"></label>
+        <input type="text" name="query" class="js-query" id="query">
+        <button type="submit" id="search">Search</button>
+
+        <button type="submit" id="prevBtn" class="hidden">&lt;|</button>
+        <button type="submit" id="pauseBtn" class="hidden">Pause</button>
+        <button type="submit" id="nextBtn" class="hidden">|&gt</button>
+      </form>
+      <h2 class="hidden">Choose Music to Start With</h2>
+      <div class="js-search-results">
+        <button class="prev-page" hidden>Previous page</button>
+        <button class="next-page" hidden>Next page</button>
+        <ol class="video-results"></ol>
+      </div>
+    </div>
+
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
