@@ -10,26 +10,96 @@
   crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link href="main.css" rel="stylesheet" type="text/css" />
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/knockout/3.0.0/knockout-min.js"></script>
+  <script src="http://rawgit.com/IntoMethod/Lightweight-JSONP/master/jsonp.js"></script>
+  <script src="https://www.youtube.com/iframe_api"></script>
 </head>
+
 <body>
   <main role="main">
-  <div class="container">
-      <form action="#" class="js-search-form" id="search">
-        <label for="search">Choose a Type of Music</label>
-        <input type="text" name="query" class="js-query" id="search">
-        <button type="submit" id="searchBtn">Search</button>
+
+    <div class="padded">
+      <form data-bind="submit: ProcessInput">
+        <div class="input-group input-group-lg">
+          <input type="text" class="form-control" placeholder="YouTube URL or search query..." data-bind="value: InputValue">
+        </div>
       </form>
-      <section class="prev-next-buttons">
-        <h2 class="hidden">Choose Music to Start With</h2>
-        <button type="button" id="prevBtn" class="hide">previous</button>
-        <button type="button" id="nextBtn" class="hide">next</button>
-      </section>
-      <div class="img-container">
-        <!-- img placeholder -->
-      </div>
     </div>
 
-  </main>
-  <script src="app.js"></script>
-</body>
+    <div class="row" data-bind="foreach: SearchResults">
+      <!-- <div class="col-xs-3"> -->
+      <div class="thumbnail pointer" data-bind="click: $parent.AddSearchResultToList">
+        <img data-bind="attr: { src: ThumbnailURL }">
+        <div class="caption">
+          <h4 class="ellipsis" data-bind="text: Title"></h4>
+          <!-- <div data-bind="text: Duration"></div> -->
+          <!-- <h6 data-bind="text: Author"></div> -->
+        </div>
+      </div>
+      <!-- </div> -->
+    </div>
+
+    <div>
+      <div id="video">
+        <div style="width: 50em">
+          <div data-bind="if: Current" style="margin-bottom: 1em">
+            <h3 class="ellipsis" data-bind="text: Current().Title"></h3>
+          </div>
+        </div>
+        <div id="player-container"></div>
+        <br>
+
+      </div>
+    </div>
+   <!--  <div class="container">
+      <form action="#" class="js-search-form" id="search" data-bind="submit: ProcessInput">
+        <div class="input-group input-group-lg">
+          <label for="search">Choose a Type of Music</label>
+          <input type="text" name="query" class="js-query form-control" id="search" data-bind="value: InputValue">
+          <button type="submit" id="searchBtn">Search</button>
+        </div>
+      </form>
+
+      <section class="prev-next-buttons">
+        <h2>Choose Music to Start With</h2>
+        <button type="button" id="prevBtn" class="hide">previous</button>
+        <button type="button" id="nextBtn" class="hide">next</button>
+      </section> -->
+      <!-- list of Youtube videos -->
+      <!-- <div class="img-container" data-bind="foreach: SearchResults"></div> -->
+
+      <!-- video player -->
+      <!-- <div id="video">
+      <div style="width: 50em"> -->
+        <!-- <button data-bind="click: PlaySomething" class="btn btn-primary">play something else</button> -->
+          <!-- <span class="padded" data-bind="if: Current">
+            <label><input type="checkbox" data-bind="checked: Loop">loop this song</label>
+          </span>
+
+          <div data-bind="if: Current" style="margin-bottom: 1em">
+            <h3 class="ellipsis" data-bind="text: Current().Title"></h3> -->
+            <!-- <button data-bind="click: RemoveCurrent" class="btn">remove this song</button> -->
+          <!-- </div>
+        </div>
+        <div id="player-container"></div>
+        <br> -->
+
+        <!-- <label for="import" data-bind="click: ToggleShowImport"><h4><a href="#">batch import</a></h4></label> -->
+        <!-- ko if: ShowImport -->
+        <!-- <textarea id="import" class="form-control" style="height: 10em" data-bind="value: ImportString"></textarea> -->
+        <!-- <br> -->
+        <!-- <button data-bind="click: Import" class="btn btn-primary">import this stuff</button> -->
+        <!-- /ko -->
+
+        <!-- <br> -->
+
+        <!-- <label for="export" data-bind="click: ToggleShowExport"><h4><a href="#">batch export</a></h4></label> -->
+        <!-- ko if: ShowExport -->
+        <!-- <input id="export" type="text" class="form-control" data-bind="value: ExportString, click: Select" readonly> -->
+        <!-- /ko -->
+      </div>
+      <!-- </div> -->
+    </main>
+    <script src="app.js"></script>
+  </body>
 </html>
