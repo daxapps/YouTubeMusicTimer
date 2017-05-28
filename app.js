@@ -4,10 +4,11 @@ var YouTubeScript = document.createElement("script");
 YouTubeScript.src = "https://www.youtube.com/iframe_api";
 document.head.appendChild(YouTubeScript);
 
-function onYouTubeIframeAPIReady() { ko.applyBindings(new Model()); }
+function onYouTubeIframeAPIReady() { 
+  ko.applyBindings(new Model()); 
+}
 
-function ItemModel(Options)
-{
+function ItemModel(Options) {
   Options = Options || {};
   var Item = {};
   Item.Code = Options.Code;
@@ -16,10 +17,9 @@ function ItemModel(Options)
   return Item;
 }
 
-function Model()
-{
+function Model() {
   var Self = this;
-  var Player;
+  // var Player;
   Self.List = ko.observableArray();
   Self.Filter = ko.observable();
   Self.FilteredList = ko.computed(FilteredList).extend({ "throttle": 100 });
@@ -29,28 +29,25 @@ function Model()
   Self.InputValue = ko.observable();
 
   // important
-  Self.ProcessInput = function()
-  {
+  Self.ProcessInput = function() {
     var Input = Self.InputValue();
 
     var Expression = /^https?:\/\/(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube(?:-nocookie)?\.com\S*[^\w\s-])([\w-]{11})(?=[^\w-]|$)(?![?=&+%\w.-]*(?:['"][^<>]*>|<\/a>))[?=&+%\w.-]*/ig;
     var Match = Expression.exec(Input);
-    if (Match && Match[1] && Match[1].length == 11)
+    if (Match && Match[1] && Match[1].length == 11) {
       AddVideoByCode(Match[1]);
-    else
+    } else {
       SearchYouTube(Input);
+    }
   }
 
   // important
-  Self.AddToList = function(Code, Title)
-  {
+  Self.AddToList = function(Code, Title) {
     Self.List.push(new ItemModel({ "Code": Code, "Title": Title }));
   }
 
-  function SearchYouTube(Query)
-  {
-    JSONP.get
-    (
+  function SearchYouTube(Query) {
+    JSONP.get (
       "https://www.googleapis.com/youtube/v3/search",
       {
         "part": "snippet",
@@ -58,13 +55,9 @@ function Model()
         "maxResults": 5,
         "key": YouTubeKey
       },
-      function(Data)
-      {
+      function(Data) {
         Self.SearchResults.removeAll();
-        ((Data || {}).items || []).forEach
-        (
-          function(video)
-          {
+        ((Data || {}).items || []).forEach(function(video) {
             video = video || {};
             var snippet = video.snippet || {};
             var title = snippet.title;
@@ -72,8 +65,6 @@ function Model()
             var author = snippet.channelTitle;
             var thumbnails = (snippet.thumbnails || {});
             var thumbnail_url = (thumbnails[Object.keys(thumbnails)[0]] || {}).url;
-            // TODO: duration from videos.list call?
-
             var SearchResult =
             {
               "Code": video_id,
@@ -84,36 +75,30 @@ function Model()
             };
 
             Self.SearchResults.push(SearchResult);
-          }
-          );
-      }
-      );
+          });
+      });
   }
 
   Self.Current = ko.observable();
-  Self.Play = function(Item)
-  {
+
+  Self.Play = function(Item) {
     Player.loadVideoById(Item.Code, Item.StartAt());
     Self.Current(Item);
   }
 
-  Self.List.subscribe
-  (
-    function()
-    {
-      if (Self.List().length == 0)
-      {
+  Self.List.subscribe(function() {
+      if (Self.List().length == 0) {
         if (Player && Self.Current()) Player.stopVideo();
         return;
       }
 
       if (!Self.Current()) Self.PlaySomething();
-    }
-    );
+    });
 
-  Self.Loop = ko.observable(false);
-  Self.PlaySomething = function()
-  {
+  // Self.Loop = ko.observable(false);
+
+  // important
+  Self.PlaySomething = function() {
     var List = Self.FilteredList();
     var Item = List[~~(Math.random() * List.length)];
     if (!Item) return;
@@ -121,58 +106,54 @@ function Model()
     Self.Play(Item);
   }
 
-  Self.VideoStateChangeHandler = function(E)
-  {
-    if (E.data == YT.PlayerState.ENDED)
-    {
+  Self.VideoStateChangeHandler = function(E) {
+    if (E.data == YT.PlayerState.ENDED){
       if (Self.Loop()) Self.Play(Self.Current());
       else Self.PlaySomething();
     }
   }
 
-  Self.Select = function(Model, Event) { Event.toElement.select(); }
-  Self.ClearInput = function()
-  {
+  Self.Select = function(Model, Event) { 
+    Event.toElement.select(); 
+  }
+
+  Self.ClearInput = function() {
     Self.InputValue("");
     Self.SearchResults.removeAll();
   }
 
   // important
-  Player = new YT.Player
-  (
+  Player = new YT.Player ( 
     "player-container",
-    {
-      "events":
-      {
-        "onStateChange": Self.VideoStateChangeHandler,
-        "onReady": function()
-        {
-          if (localStorage[LocalStorageKey] && Self.List().length == 0)
+    { "events":
+      { "onStateChange": Self.VideoStateChangeHandler,
+        "onReady": function() {
+          if (localStorage[LocalStorageKey] && Self.List().length == 0) {
             Import(localStorage[LocalStorageKey]);
-
+          }
           setInterval(SaveToLocalStorage, 5000);
         }
       }
-    }
-    );
+    });
 
   // important 
   // This is the callback for a computed observable, defined above.
-  function FilteredList()
-  {
+  function FilteredList() {
     if (!Self.Filter()) return Self.List();
-    return Self.List().filter(function(V) { return V.Title.toLowerCase().indexOf(Self.Filter().toLowerCase()) > -1; });
+    return Self.List().filter(function(V) { 
+      return V.Title.toLowerCase().indexOf(Self.Filter().toLowerCase()) > -1; 
+    });
   }
 
-// important
-Self.AddSearchResultToList = function()
-{
-  Self.AddToList(this.Code, this.Title);
-  Self.ClearInput();
-}
+  // important
+  Self.AddSearchResultToList = function() {
+    Self.AddToList(this.Code, this.Title);
+    Self.ClearInput();
+  }
+
 }
 
-
+// =======================================
 // Timer
 var tmin;
 var tsec;
@@ -183,13 +164,13 @@ var time = document.getElementById("t");
 function startSec(){
   tsec--;
 
-  if(tmin > 0 & tsec == -1){
+  if (tmin > 0 & tsec == -1) {
     tsec = 59;
     tmin--;
-  }else if (tmin == 0 && tsec == -1) {
+  } else if (tmin == 0 && tsec == -1) {
     tsec = 59;
-  }else if (tmin == 0 && tsec == 0) {
-        // alert("Done!");
+  } else if (tmin == 0 && tsec == 0) {
+    Player.stopVideo();
   }
 
   time.innerHTML = tmin + "m " + tsec + "s";

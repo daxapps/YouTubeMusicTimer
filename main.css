@@ -30,5 +30,8 @@ iframe {
 
 h3 {
 	font-size: 14px;
+}
 
+.ellipsis {
+	text-overflow: ellipsis;
 }
