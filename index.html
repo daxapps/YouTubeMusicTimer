@@ -16,38 +16,45 @@
 </head>
 
 <body>
-  <main role="main">
+  <main role="main" class="container">
 
     <div class="padded">
       <form data-bind="submit: ProcessInput">
         <div class="input-group input-group-lg">
-          <input type="text" class="form-control" placeholder="YouTube URL or search query..." data-bind="value: InputValue">
+          <label for="search">Choose a Type of Music</label>
+          <input type="text" data-bind="value: InputValue">
+          <button type="submit" data-bind="value: InputValue" id="searchBtn">Search</button>
         </div>
       </form>
     </div>
 
-    <div class="row" data-bind="foreach: SearchResults">
-      <!-- <div class="col-xs-3"> -->
+    <fieldset>      
+      <div id = "sub">
+        <h2 id = "t">00m 00s</h2>
+        <input type="text" id="min" placeholder = "Minutes">
+        <input type="text" id="sec" placeholder = "Seconds">
+        <button id="startBtn">Start</button>
+        <button id="stopBtn">Stop</button>
+      </div>
+    </fieldset>
+
+    <div class="row" data-bind="foreach: SearchResults">  
       <div class="thumbnail pointer" data-bind="click: $parent.AddSearchResultToList">
         <img data-bind="attr: { src: ThumbnailURL }">
         <div class="caption">
-          <h4 class="ellipsis" data-bind="text: Title"></h4>
-          <!-- <div data-bind="text: Duration"></div> -->
-          <!-- <h6 data-bind="text: Author"></div> -->
+          <h4 class="ellipsis" data-bind="text: Title"></h4>  
         </div>
       </div>
-      <!-- </div> -->
     </div>
 
     <div>
       <div id="video">
-        <div style="width: 50em">
+        <div >
           <div data-bind="if: Current" style="margin-bottom: 1em">
             <h3 class="ellipsis" data-bind="text: Current().Title"></h3>
           </div>
         </div>
-        <div id="player-container"></div>
-        <br>
+        <div id="player-container" ></div>
 
       </div>
     </div>

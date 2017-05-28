@@ -21,3 +21,14 @@
     height: 50px;
     width: 100px;
 }
+
+iframe {
+	width: 65% !important;
+	height: 50% !important;
+	margin: 20px auto;
+}
+
+h3 {
+	font-size: 14px;
+
+}
