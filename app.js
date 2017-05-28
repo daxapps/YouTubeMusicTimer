@@ -100,6 +100,7 @@ function Model() {
   // important
   Self.PlaySomething = function() {
     console.log('play PlaySomething')
+    $('.input-group, #video').hide();
     var List = Self.FilteredList();
     Item = List[~~(Math.random() * List.length)];
     if (!Item) return;
@@ -152,6 +153,7 @@ function Model() {
 
   // important
   Self.AddSearchResultToList = function() {
+    // why is video not showing?? 
     $('#timer, #video').show();
     Self.AddToList(this.Code, this.Title);
     Self.ClearInput();
@@ -203,7 +205,7 @@ function startTimer(){
   x = setInterval(startSec, 1000);
   Self.Play(Item);
   console.log('self play')
-
+  // $('#video').show();
 }
 
 function stopTimer(){
@@ -214,7 +216,7 @@ function stopTimer(){
 
 $('#startBtn').on("click", function(e) {
   startTimer();
-  // Player.startVideo();
+  $('#video').show();
 })
 
 $('#stopBtn').on("click", function(e) {
