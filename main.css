@@ -3,9 +3,14 @@
 }
 
 .container {
-  max-width: 600px;
+  max-width: 75%;
   /*text-align: center;*/
   margin: 0 auto;
+}
+
+.padded {
+	display: inline-block;
+	margin: 30px auto;
 }
 
 .hidden {
@@ -18,13 +23,13 @@
 }
 
 .videoThumbnail {
-    height: 50px;
-    width: 100px;
+    height: 60px;
+    width: 80px;
 }
 
 iframe {
 	width: 65% !important;
-	height: 50% !important;
+	height: 65% !important;
 	margin: 20px auto;
 }
 
@@ -34,4 +39,19 @@ h3 {
 
 .ellipsis {
 	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }
+
+.search-results {
+	width: 75%;
+	margin: 20px auto;
+}
+
+.search-result-title {
+	font-size: 14px;
+}
+
+/*.result-img {
+	float: left;
+}*/

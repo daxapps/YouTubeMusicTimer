@@ -18,7 +18,7 @@ function ItemModel(Options) {
 }
 
 function Model() {
-  var Self = this;
+  Self = this;
   // var Player;
   Self.List = ko.observableArray();
   Self.Filter = ko.observable();
@@ -99,11 +99,12 @@ function Model() {
 
   // important
   Self.PlaySomething = function() {
+    console.log('play PlaySomething')
     var List = Self.FilteredList();
-    var Item = List[~~(Math.random() * List.length)];
+    Item = List[~~(Math.random() * List.length)];
     if (!Item) return;
 
-    Self.Play(Item);
+    // Self.Play(Item);
   }
 
   Self.VideoStateChangeHandler = function(E) {
@@ -127,14 +128,18 @@ function Model() {
     "player-container",
     { "events":
       { "onStateChange": Self.VideoStateChangeHandler,
-        "onReady": function() {
-          if (localStorage[LocalStorageKey] && Self.List().length == 0) {
-            Import(localStorage[LocalStorageKey]);
-          }
-          setInterval(SaveToLocalStorage, 5000);
-        }
+        "onReady": onPlayerReady
       }
     });
+
+  // important
+  function onPlayerReady(event) {
+    // if (localStorage[LocalStorageKey] && Self.List().length == 0) {
+    //   Import(localStorage[LocalStorageKey]);
+    // }
+    // setInterval(SaveToLocalStorage, 5000);
+    event.target.playVideo();
+  }
 
   // important 
   // This is the callback for a computed observable, defined above.
@@ -147,6 +152,7 @@ function Model() {
 
   // important
   Self.AddSearchResultToList = function() {
+    $('#timer, #video').show();
     Self.AddToList(this.Code, this.Title);
     Self.ClearInput();
   }
@@ -158,7 +164,6 @@ function Model() {
 var tmin;
 var tsec;
 var x;
-var y;
 var time = document.getElementById("t");
 
 function startSec(){
@@ -168,12 +173,21 @@ function startSec(){
     tsec = 59;
     tmin--;
   } else if (tmin == 0 && tsec == -1) {
+    time.innerHTML = tsec + "s";
     tsec = 59;
   } else if (tmin == 0 && tsec == 0) {
+    tmin = "00";
+    tsec = "00";
     Player.stopVideo();
+    stopTimer();
   }
 
-  time.innerHTML = tmin + "m " + tsec + "s";
+  if (tmin == 0) {
+    time.innerHTML = tsec + "s";
+  } else {
+    time.innerHTML = tmin + "m " + tsec + "s";
+  }
+  
 }
 
 function startTimer(){
@@ -181,8 +195,15 @@ function startTimer(){
   $('#stopBtn').show()
   tmin = document.getElementById("min").value;
   tsec = document.getElementById("sec").value;
-  time.innerHTML = tmin + ":" + tsec; 
+  if (tmin == 0) {
+    time.innerHTML = tsec + "s";
+  } else {
+    time.innerHTML = tmin + "m " + tsec + "s";
+  } 
   x = setInterval(startSec, 1000);
+  Self.Play(Item);
+  console.log('self play')
+
 }
 
 function stopTimer(){
@@ -193,14 +214,22 @@ function stopTimer(){
 
 $('#startBtn').on("click", function(e) {
   startTimer();
+  // Player.startVideo();
 })
 
 $('#stopBtn').on("click", function(e) {
   e.preventDefault();
   stopTimer();
+  Player.stopVideo();
 })
 
+function renderInitialView() {
+  $('#timer, #video').hide();
+}
 
+$(function() {
+  renderInitialView();
+});
 
 // var state = {
 //     previous: null,

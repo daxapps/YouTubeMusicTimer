@@ -19,7 +19,7 @@
   <main role="main" class="container">
 
     <fieldset>      
-      <div id = "sub">
+      <div id = "timer">
         <h2 id = "t">00m 00s</h2>
         <input type="text" id="min" placeholder = "Minutes">
         <input type="text" id="sec" placeholder = "Seconds">
@@ -39,12 +39,13 @@
         </form>
       </div>
 
-      <div class="row" data-bind="foreach: SearchResults">  
+      <div class="row search-results" data-bind="foreach: SearchResults">  
         <div class="thumbnail pointer" data-bind="click: $parent.AddSearchResultToList">
-          <img data-bind="attr: { src: ThumbnailURL }">
-          <div class="caption">
-            <h4 class="ellipsis" data-bind="text: Title"></h4>  
-          </div>
+          <p class="ellipsis search-result-title caption" data-bind="text: Title"></p> 
+          <img class="result-img" data-bind="attr: { src: ThumbnailURL }">
+          <!-- <div class="caption"> -->
+             
+          <!-- </div> -->
         </div>
       </div>
 
