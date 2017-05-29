@@ -13,8 +13,9 @@
 	margin: 30px auto;
 }
 
-.hidden {
-    display: none;
+form {
+	/*display: inline-block;*/
+	margin: 0 auto;
 }
 
 .videoChoices {
@@ -22,15 +23,17 @@
     margin: 0 auto;
 }
 
+.caption {
+	margin-bottom: 0px;
+}
+
 .videoThumbnail {
     height: 60px;
     width: 80px;
 }
 
-iframe {
-	width: 65% !important;
-	height: 65% !important;
-	margin: 20px auto;
+#timer {
+	text-align: center;
 }
 
 h3 {
@@ -52,6 +55,18 @@ h3 {
 	font-size: 14px;
 }
 
-/*.result-img {
-	float: left;
+#video {
+	width: 75%;
+	margin: auto;
+}
+
+iframe {
+	width: 100% !important;
+	height: 100% !important;
+	margin: 20px auto;
+}
+
+/*.ytp-thumbnail-overlay-image {
+	display: inline-block;
+	margin: auto;
 }*/

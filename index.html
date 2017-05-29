@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
   <title>Youtube Music Timer</title>
   <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -18,22 +21,25 @@
 <body>
   <main role="main" class="container">
 
-    <fieldset>      
+    <!-- <fieldset>       -->
       <div id = "timer">
+        <h1>Music Timer</h1>
+        <br>
         <h2 id = "t">00m 00s</h2>
         <input type="text" id="min" placeholder = "Minutes">
         <input type="text" id="sec" placeholder = "Seconds">
         <button id="startBtn">Start</button>
-        <button id="stopBtn">Stop</button>
+        <button id="restartBtn">Start</button>
+        <button id="stopBtn">Pause</button>
       </div>
-    </fieldset>
+    <!-- </fieldset> -->
     
     <div class="video-container">
       <div class="padded">
-        <form data-bind="submit: ProcessInput">
+        <form action="#" data-bind="submit: ProcessInput">
           <div class="input-group input-group-lg">
-            <label for="search">Choose a Type of Music</label>
-            <input type="text" data-bind="value: InputValue">
+            <label for="search">Type of Music</label>
+            <input type="text" id="search" data-bind="value: InputValue">
             <button type="submit" data-bind="value: InputValue" id="searchBtn">Search</button>
           </div>
         </form>

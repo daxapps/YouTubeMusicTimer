@@ -152,9 +152,9 @@ function Model() {
   }
 
   // important
-  Self.AddSearchResultToList = function() {
-    // why is video not showing?? 
+  Self.AddSearchResultToList = function() { 
     $('#timer, #video').show();
+    $('#restartBtn, #stopBtn').hide();
     Self.AddToList(this.Code, this.Title);
     Self.ClearInput();
   }
@@ -209,7 +209,7 @@ function startTimer(){
 }
 
 function stopTimer(){
-  $('#startBtn').show()
+  $('#restartBtn').show()
   $('#stopBtn').hide()
   x = clearTimeout(x)
 }
@@ -217,7 +217,18 @@ function stopTimer(){
 $('#startBtn').on("click", function(e) {
   startTimer();
   $('#video').show();
+  $('#restartBtn').hide();
 })
+
+$('#restartBtn').on('click', function(e) {
+  $('#startBtn, #restartBtn').hide();
+  $('#stopBtn').show();
+  //restart video
+  Self.Play(Item);
+  // restart timer
+  x = setInterval(startSec, 1000);
+})
+
 
 $('#stopBtn').on("click", function(e) {
   e.preventDefault();
