@@ -13,28 +13,27 @@
   crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link href="main.css" rel="stylesheet" type="text/css" />
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/knockout/3.0.0/knockout-min.js"></script>
-  <script src="http://rawgit.com/IntoMethod/Lightweight-JSONP/master/jsonp.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.0.0/knockout-min.js"></script>
+  <script src="https://rawgit.com/IntoMethod/Lightweight-JSONP/master/jsonp.js"></script>
   <script src="https://www.youtube.com/iframe_api"></script>
 </head>
 
 <body>
   <main role="main" class="container">
 
-    <!-- <fieldset>       -->
-      <div id = "timer">
-        <h1>Music Timer</h1>
-        <br>
-        <h2 id = "t">00m 00s</h2>
-        <input type="text" id="min" placeholder = "Minutes">
-        <input type="text" id="sec" placeholder = "Seconds">
-        <button id="startBtn">Start</button>
-        <button id="restartBtn">Start</button>
-        <button id="stopBtn">Pause</button>
-      </div>
-    <!-- </fieldset> -->
+    <div id = "timer">
+      <h1>Music Timer</h1>
+      <br>
+      <h2 id = "t">00m 00s</h2>
+      <input type="text" id="min" placeholder = "Minutes">
+      <input type="text" id="sec" placeholder = "Seconds">
+      <button id="startBtn">Start</button>
+      <button id="restartBtn">Start</button>
+      <button id="stopBtn">Pause</button>
+    </div>
     
     <div class="video-container">
+    
       <div class="padded">
         <form action="#" data-bind="submit: ProcessInput">
           <div class="input-group input-group-lg">
@@ -49,9 +48,6 @@
         <div class="thumbnail pointer" data-bind="click: $parent.AddSearchResultToList">
           <p class="ellipsis search-result-title caption" data-bind="text: Title"></p> 
           <img class="result-img" data-bind="attr: { src: ThumbnailURL }">
-          <!-- <div class="caption"> -->
-             
-          <!-- </div> -->
         </div>
       </div>
 
@@ -63,6 +59,7 @@
           <div id="player-container" ></div>
         </div>
       </div>
+
     </div>
     
    <!--  <div class="container">

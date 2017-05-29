@@ -167,6 +167,7 @@ var tmin;
 var tsec;
 var x;
 var time = document.getElementById("t");
+var alarmSound = new Audio('Cuckoo-bird-sound.mp3');
 
 function startSec(){
   tsec--;
@@ -182,6 +183,7 @@ function startSec(){
     tsec = "00";
     Player.stopVideo();
     stopTimer();
+    alarmSound.play();
   }
 
   if (tmin == 0) {
@@ -205,7 +207,6 @@ function startTimer(){
   x = setInterval(startSec, 1000);
   Self.Play(Item);
   console.log('self play')
-  // $('#video').show();
 }
 
 function stopTimer(){
