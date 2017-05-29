@@ -57,14 +57,14 @@ function Model() {
       },
       function(Data) {
         Self.SearchResults.removeAll();
-        ((Data || {}).items || []).forEach(function(video) {
-            video = video || {};
-            var snippet = video.snippet || {};
+        ((Data).items).forEach(function(video) {
+            video = video;
+            var snippet = video.snippet;
             var title = snippet.title;
-            var video_id = (video.id || {}).videoId;
+            var video_id = (video.id).videoId;
             var author = snippet.channelTitle;
-            var thumbnails = (snippet.thumbnails || {});
-            var thumbnail_url = (thumbnails[Object.keys(thumbnails)[0]] || {}).url;
+            var thumbnails = (snippet.thumbnails);
+            var thumbnail_url = (thumbnails[Object.keys(thumbnails)[0]]).url;
             var SearchResult =
             {
               "Code": video_id,
@@ -160,6 +160,7 @@ function Model() {
   }
 
 }
+ 
 
 // =======================================
 // Timer
@@ -229,7 +230,6 @@ $('#restartBtn').on('click', function(e) {
   // restart timer
   x = setInterval(startSec, 1000);
 })
-
 
 $('#stopBtn').on("click", function(e) {
   e.preventDefault();

@@ -8,6 +8,14 @@
   margin: 0 auto;
 }
 
+.video-container {
+	text-align: center;
+}
+
+#search {
+	display: block;
+	margin: 0px auto 10px auto;
+}
 .padded {
 	display: inline-block;
 	margin: 30px auto;
