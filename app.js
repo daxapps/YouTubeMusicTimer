@@ -10,7 +10,7 @@ function onYouTubeIframeAPIReady() {
 
 function ItemModel(Options) {
   Options = Options || {};
-  var Item = {};
+  var Item = {}; 
   Item.Code = Options.Code;
   Item.Title = Options.Title || ("Untitled (" + Options.Code + ")");
   Item.StartAt = ko.observable(Options.StartAt || 0);
@@ -235,6 +235,11 @@ $('#stopBtn').on("click", function(e) {
   e.preventDefault();
   stopTimer();
   Player.stopVideo();
+})
+
+$('#restartMuiscSearchBtn').on('click', function(e) {
+  e.preventDefault();
+  location.reload();
 })
 
 function renderInitialView() {

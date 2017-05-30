@@ -25,11 +25,17 @@
       <h1>Music Timer</h1>
       <br>
       <h2 id = "t">00m 00s</h2>
-      <input type="text" id="min" placeholder = "Minutes">
-      <input type="text" id="sec" placeholder = "Seconds">
-      <button id="startBtn">Start</button>
-      <button id="restartBtn">Start</button>
-      <button id="stopBtn">Pause</button>
+      <div class="timerInputs">
+        <input type="text" class="form-control" id="min" placeholder = "Minutes" autofocus>
+        <input type="text" class="form-control" id="sec" placeholder = "Seconds" autofocus>
+      </div>
+      <div class="timerBtns">
+        <button id="startBtn" class="btn btn-sm btn-primary btn-block">Start</button>
+        <button id="restartBtn" class="btn btn-md btn-primary btn-block">Start</button>
+        <button id="stopBtn" class="btn btn-md btn-primary btn-block">Pause</button>
+        <button id="restartMuiscSearchBtn" class="btn btn-sm btn-primary btn-block">Search for another video</button>
+      </div>
+      
     </div>
     
     <div class="video-container">
@@ -38,7 +44,6 @@
         <form class="form-signin" action="#" data-bind="submit: ProcessInput">
           <div class="input-group input-group-lg">
             <h2 class="form-signin-heading">Search for type of music</h2>
-            <!-- <label for="search" class="sr-only"></label> -->
             <input type="text" id="search" data-bind="value: InputValue" placeholder="Music Genre" class="form-control" required autofocus>
             <button class="btn btn-lg btn-primary btn-block" type="submit" data-bind="value: InputValue" id="searchBtn">Search</button>
           </div>
