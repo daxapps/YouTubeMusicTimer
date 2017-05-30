@@ -55,24 +55,24 @@ function Model() {
       function(Data) {
         Self.SearchResults.removeAll();
         ((Data).items).forEach(function(video) {
-            video = video;
-            var snippet = video.snippet;
-            var title = snippet.title;
-            var video_id = (video.id).videoId;
-            var author = snippet.channelTitle;
-            var thumbnails = (snippet.thumbnails);
-            var thumbnail_url = (thumbnails[Object.keys(thumbnails)[0]]).url;
-            var SearchResult =
-            {
-              "Code": video_id,
-              "Title": title,
-              "Author": author,
-              "ThumbnailURL": thumbnail_url,
-              "Duration": 0
-            };
+          video = video;
+          var snippet = video.snippet;
+          var title = snippet.title;
+          var video_id = (video.id).videoId;
+          var author = snippet.channelTitle;
+          var thumbnails = (snippet.thumbnails);
+          var thumbnail_url = (thumbnails[Object.keys(thumbnails)[0]]).url;
+          var SearchResult =
+          {
+            "Code": video_id,
+            "Title": title,
+            "Author": author,
+            "ThumbnailURL": thumbnail_url,
+            "Duration": 0
+          };
 
-            Self.SearchResults.push(SearchResult);
-          });
+          Self.SearchResults.push(SearchResult);
+        });
       });
   }
 
@@ -84,13 +84,13 @@ function Model() {
   }
 
   Self.List.subscribe(function() {
-      if (Self.List().length == 0) {
-        if (Player && Self.Current()) Player.stopVideo();
-        return;
-      }
+    if (Self.List().length == 0) {
+      if (Player && Self.Current()) Player.stopVideo();
+      return;
+    }
 
-      if (!Self.Current()) Self.PlaySomething();
-    });
+    if (!Self.Current()) Self.PlaySomething();
+  });
 
   Self.PlaySomething = function() {
     $('.input-group, #video').hide();
@@ -118,10 +118,10 @@ function Model() {
   Player = new YT.Player ( 
     "player-container",
     { "events":
-      { "onStateChange": Self.VideoStateChangeHandler,
-        "onReady": onPlayerReady
-      }
-    });
+    { "onStateChange": Self.VideoStateChangeHandler,
+    "onReady": onPlayerReady
+  }
+});
 
   function onPlayerReady(event) {
     event.target.playVideo();
@@ -136,14 +136,14 @@ function Model() {
   }
 
   Self.AddSearchResultToList = function() { 
-    $('#timer, #video').show();
-    $('#restartBtn, #stopBtn').hide();
+    $('.timer, .video').show();
+    $('.restart-btn, .stop-btn').hide();
     Self.AddToList(this.Code, this.Title);
     Self.ClearInput();
   }
 
 }
- 
+
 // =======================================
 // Timer
 var tmin;
@@ -178,8 +178,8 @@ function startSec(){
 }
 
 function startTimer(){
-  $('#startBtn').hide()
-  $('#stopBtn').show()
+  $('.start-btn').hide()
+  $('.stop-btn').show()
   tmin = document.getElementById("min").value;
   tsec = document.getElementById("sec").value;
   if (tmin == 0) {
@@ -192,39 +192,39 @@ function startTimer(){
 }
 
 function stopTimer(){
-  $('#restartBtn').show()
-  $('#stopBtn').hide()
+  $('.restart-btn').show()
+  $('.stop-btn').hide()
   x = clearTimeout(x)
 }
 
-$('#startBtn').on("click", function(e) {
+$('.start-btn').on("click", function(e) {
   startTimer();
   $('#video').show();
-  $('#restartBtn').hide();
+  $('.restart-btn').hide();
 })
 
-$('#restartBtn').on('click', function(e) {
-  $('#startBtn, #restartBtn').hide();
-  $('#stopBtn').show();
+$('.restart-btn').on('click', function(e) {
+  $('.start-btn, .restart-btn').hide();
+  $('.stop-btn').show();
   //restart video
   Self.Play(Item);
   // restart timer
   x = setInterval(startSec, 1000);
 })
 
-$('#stopBtn').on("click", function(e) {
+$('.stop-btn').on("click", function(e) {
   e.preventDefault();
   stopTimer();
   Player.stopVideo();
 })
 
-$('#restartMuiscSearchBtn').on('click', function(e) {
+$('.restart-music-search-btn').on('click', function(e) {
   e.preventDefault();
   location.reload();
 })
 
 function renderInitialView() {
-  $('#timer, #video').hide();
+  $('.timer, #video').hide();
 }
 
 $(function() {

@@ -21,19 +21,19 @@
 <body>
   <main role="main" class="container">
 
-    <div id = "timer">
+    <div class="timer">
       <h1>Music Timer</h1>
       <br>
-      <h2 id = "t">00m 00s</h2>
-      <div class="timerInputs">
-        <input type="text" class="form-control" id="min" placeholder = "Minutes" autofocus>
+      <h2 id="t">00m 00s</h2>
+      <div class="timer-inputs">
+      <input type="text" class="form-control" id="min" placeholder = "Minutes" autofocus>
         <input type="text" class="form-control" id="sec" placeholder = "Seconds" autofocus>
       </div>
-      <div class="timerBtns">
-        <button id="startBtn" class="btn btn-sm btn-primary btn-block">Start</button>
-        <button id="restartBtn" class="btn btn-md btn-primary btn-block">Start</button>
-        <button id="stopBtn" class="btn btn-md btn-primary btn-block">Pause</button>
-        <button id="restartMuiscSearchBtn" class="btn btn-sm btn-primary btn-block">Search for another video</button>
+      <div class="timer-btns">
+      <button class=" start-btn btn btn-sm btn-primary btn-block">Start</button>
+        <button class="restart-btn btn btn-md btn-primary btn-block">Start</button>
+        <button class=" stop-btn btn btn-md btn-primary btn-block">Pause</button>
+        <button class="restart-music-search-btn btn btn-sm btn-primary btn-block">Search for another video</button>
       </div>
     </div>
     
@@ -42,8 +42,8 @@
         <form class="form-signin" action="#" data-bind="submit: ProcessInput">
           <div class="input-group input-group-lg">
             <h2 class="form-signin-heading">Search for type of music</h2>
-            <input type="text" id="search" data-bind="value: InputValue" placeholder="Music Genre" class="form-control" required autofocus>
-            <button class="btn btn-lg btn-primary btn-block" type="submit" data-bind="value: InputValue" id="searchBtn">Search</button>
+            <input type="text" class="form-control" id="search" data-bind="value: InputValue" placeholder="Music Genre" required autofocus>
+            <button class="search-btn btn btn-lg btn-primary btn-block" type="submit" data-bind="value: InputValue">Search</button>
           </div>
         </form>
       </div>
@@ -57,7 +57,7 @@
 
       <div>
         <div id="video">
-          <div data-bind="if: Current" style="margin-bottom: 1em">
+          <div data-bind="if: Current">
             <h3 class="ellipsis" data-bind="text: Current().Title"></h3>
           </div>
           <div id="player-container" ></div>

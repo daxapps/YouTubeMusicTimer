@@ -1,14 +1,15 @@
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body {
 	background-color: black;
 }
+
 .container {
-  max-width: 300px;
-  margin: 0 auto;
-  background-color: lightgray;
+	max-width: 300px;
+	margin: 0 auto;
+	background-color: lightgray;
 	border: 2px solid gray;
 	border-radius: 6px;
 }
@@ -17,14 +18,12 @@ body {
 	text-align: center;
 }
 
-.dropdown {
-	position: relative;
-}
-
 #search {
 	display: block;
-	margin: 0px auto 10px auto;
+	margin: 0px auto 25px auto;
+	border-radius: 3px;
 }
+
 .padded {
 	display: inline-block;
 	margin: 30px auto;
@@ -34,21 +33,11 @@ form {
 	margin: 0 auto;
 }
 
-.videoChoices {
-    width: 50%;
-    margin: 0 auto;
-}
-
 .caption {
 	margin-bottom: 0px;
 }
 
-.videoThumbnail {
-    height: 60px;
-    width: 80px;
-}
-
-#timer {
+.timer {
 	display: block;
 	text-align: center;
 	width: 90%;
@@ -56,16 +45,12 @@ form {
 	padding: 0px;
 }
 
-#t {
-	margin-top: 0px;
-}
-
-.timerInputs {
+.timer-inputs {
 	width: 40%;
 	margin: 20px auto;
 }
 
-.timerBtns {
+.timer-btns {
 	width: 65%;
 	margin: 20px auto;
 }
@@ -99,5 +84,5 @@ h3 {
 iframe {
 	width: 100% !important;
 	height: 100% !important;
-	margin: 20px auto;
+	margin: 0 auto;
 }
