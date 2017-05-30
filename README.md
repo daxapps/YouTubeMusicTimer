@@ -1,13 +1,13 @@
 # YouTubeMusicTimer
 A web application that enables a user to set a timer to play music from YouTube.
 
-This is a web application written using HTML5, CSS3, Javascript, jQuery, AJAX, and KnockoutJS.
+This is a web application uses HTML5, CSS3, Javascript, jQuery, AJAX, and KnockoutJS.
 
 This app allows users to:
 - search Youtube for music
 - set a timer that controls when the music is paused and restarted
 
-When the time expires, the music stops and a coo coo clock alarn sounds.
+When the time expires, the music stops and a Cuckoo bird alarm sounds.
 
 ## Screeshots
 
