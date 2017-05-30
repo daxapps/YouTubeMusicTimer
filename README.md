@@ -9,6 +9,12 @@ This app allows users to:
 
 When the time expires, the music stops and a coo coo clock alarn sounds.
 
+## Screeshots
+
+<img width="331" alt="screen shot 2017-05-30 at 7 53 53 am" src="https://cloud.githubusercontent.com/assets/19802832/26584481/8695d64e-450e-11e7-869b-3422ea975a01.png">
+<img width="320" alt="screen shot 2017-05-30 at 7 56 31 am" src="https://cloud.githubusercontent.com/assets/19802832/26584482/86a30c2e-450e-11e7-9e69-7f8f9e229be1.png">
+<img width="301" alt="screen shot 2017-05-30 at 7 57 01 am" src="https://cloud.githubusercontent.com/assets/19802832/26584484/86a4b3a8-450e-11e7-8258-a2ce0a1015e2.png">
+<img width="337" alt="screen shot 2017-05-30 at 7 57 39 am" src="https://cloud.githubusercontent.com/assets/19802832/26584483/86a4fed0-450e-11e7-91ed-d51e247d980d.png">
 
 ## Installation
 
