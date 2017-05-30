@@ -35,11 +35,9 @@
         <button id="stopBtn" class="btn btn-md btn-primary btn-block">Pause</button>
         <button id="restartMuiscSearchBtn" class="btn btn-sm btn-primary btn-block">Search for another video</button>
       </div>
-      
     </div>
     
     <div class="video-container">
-    
       <div class="padded">
         <form class="form-signin" action="#" data-bind="submit: ProcessInput">
           <div class="input-group input-group-lg">
@@ -50,8 +48,6 @@
         </form>
       </div>
 
-      <!-- <button type="button" id="prevBtn" >previous</button>
-      <button type="button" id="nextBtn" >next</button> -->
       <div class="row search-results" data-bind="foreach: SearchResults">  
         <div class="thumbnail pointer" data-bind="click: $parent.AddSearchResultToList">
           <p class="ellipsis search-result-title caption" data-bind="text: Title"></p> 
@@ -67,58 +63,9 @@
           <div id="player-container" ></div>
         </div>
       </div>
-
     </div>
     
-   <!--  <div class="container">
-      <form action="#" class="js-search-form" id="search" data-bind="submit: ProcessInput">
-        <div class="input-group input-group-lg">
-          <label for="search">Choose a Type of Music</label>
-          <input type="text" name="query" class="js-query form-control" id="search" data-bind="value: InputValue">
-          <button type="submit" id="searchBtn">Search</button>
-        </div>
-      </form>
-
-      <section class="prev-next-buttons">
-        <h2>Choose Music to Start With</h2>
-        <button type="button" id="prevBtn" class="hide">previous</button>
-        <button type="button" id="nextBtn" class="hide">next</button>
-      </section> -->
-      <!-- list of Youtube videos -->
-      <!-- <div class="img-container" data-bind="foreach: SearchResults"></div> -->
-
-      <!-- video player -->
-      <!-- <div id="video">
-      <div style="width: 50em"> -->
-        <!-- <button data-bind="click: PlaySomething" class="btn btn-primary">play something else</button> -->
-          <!-- <span class="padded" data-bind="if: Current">
-            <label><input type="checkbox" data-bind="checked: Loop">loop this song</label>
-          </span>
-
-          <div data-bind="if: Current" style="margin-bottom: 1em">
-            <h3 class="ellipsis" data-bind="text: Current().Title"></h3> -->
-            <!-- <button data-bind="click: RemoveCurrent" class="btn">remove this song</button> -->
-          <!-- </div>
-        </div>
-        <div id="player-container"></div>
-        <br> -->
-
-        <!-- <label for="import" data-bind="click: ToggleShowImport"><h4><a href="#">batch import</a></h4></label> -->
-        <!-- ko if: ShowImport -->
-        <!-- <textarea id="import" class="form-control" style="height: 10em" data-bind="value: ImportString"></textarea> -->
-        <!-- <br> -->
-        <!-- <button data-bind="click: Import" class="btn btn-primary">import this stuff</button> -->
-        <!-- /ko -->
-
-        <!-- <br> -->
-
-        <!-- <label for="export" data-bind="click: ToggleShowExport"><h4><a href="#">batch export</a></h4></label> -->
-        <!-- ko if: ShowExport -->
-        <!-- <input id="export" type="text" class="form-control" data-bind="value: ExportString, click: Select" readonly> -->
-        <!-- /ko -->
-      <!-- </div> -->
-      <!-- </div> -->
-    </main>
-    <script src="app.js"></script>
-  </body>
+  </main>
+  <script src="app.js"></script>
+</body>
 </html>

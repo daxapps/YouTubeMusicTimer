@@ -2,17 +2,19 @@
     box-sizing: border-box;
 }
 
+body {
+	background-color: black;
+}
 .container {
   max-width: 300px;
   margin: 0 auto;
-  background-color: lightblue;
+  background-color: lightgray;
 	border: 2px solid gray;
 	border-radius: 6px;
 }
 
 .video-container {
 	text-align: center;
-	height: 50%;
 }
 
 .dropdown {

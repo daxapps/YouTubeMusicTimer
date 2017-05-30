@@ -19,7 +19,6 @@ function ItemModel(Options) {
 
 function Model() {
   Self = this;
-  // var Player;
   Self.List = ko.observableArray();
   Self.Filter = ko.observable();
   Self.FilteredList = ko.computed(FilteredList).extend({ "throttle": 100 });
@@ -28,7 +27,6 @@ function Model() {
 
   Self.InputValue = ko.observable();
 
-  // important
   Self.ProcessInput = function() {
     var Input = Self.InputValue();
 
@@ -41,7 +39,6 @@ function Model() {
     }
   }
 
-  // important
   Self.AddToList = function(Code, Title) {
     Self.List.push(new ItemModel({ "Code": Code, "Title": Title }));
   }
@@ -95,17 +92,11 @@ function Model() {
       if (!Self.Current()) Self.PlaySomething();
     });
 
-  // Self.Loop = ko.observable(false);
-
-  // important
   Self.PlaySomething = function() {
-    console.log('play PlaySomething')
     $('.input-group, #video').hide();
     var List = Self.FilteredList();
     Item = List[~~(Math.random() * List.length)];
     if (!Item) return;
-
-    // Self.Play(Item);
   }
 
   Self.VideoStateChangeHandler = function(E) {
@@ -124,7 +115,6 @@ function Model() {
     Self.SearchResults.removeAll();
   }
 
-  // important
   Player = new YT.Player ( 
     "player-container",
     { "events":
@@ -133,16 +123,10 @@ function Model() {
       }
     });
 
-  // important
   function onPlayerReady(event) {
-    // if (localStorage[LocalStorageKey] && Self.List().length == 0) {
-    //   Import(localStorage[LocalStorageKey]);
-    // }
-    // setInterval(SaveToLocalStorage, 5000);
     event.target.playVideo();
   }
 
-  // important 
   // This is the callback for a computed observable, defined above.
   function FilteredList() {
     if (!Self.Filter()) return Self.List();
@@ -151,7 +135,6 @@ function Model() {
     });
   }
 
-  // important
   Self.AddSearchResultToList = function() { 
     $('#timer, #video').show();
     $('#restartBtn, #stopBtn').hide();
@@ -161,7 +144,6 @@ function Model() {
 
 }
  
-
 // =======================================
 // Timer
 var tmin;
@@ -207,7 +189,6 @@ function startTimer(){
   } 
   x = setInterval(startSec, 1000);
   Self.Play(Item);
-  console.log('self play')
 }
 
 function stopTimer(){
@@ -249,200 +230,3 @@ function renderInitialView() {
 $(function() {
   renderInitialView();
 });
-
-// var state = {
-//     previous: null,
-//     next: null,
-//     results: false
-// }
-
-// var base_url = "https://www.googleapis.com/youtube/v3/search?";
-
-// function getData(searchTerm, callback, token) {
-//     var query = {
-//         key: 'AIzaSyBZw_Dg7LohwJhi_O7ZOOz--qFthIyVlFM',
-//         q: searchTerm + " music",
-//         part: 'snippet',
-//         maxResults: 5,
-//         pageToken: token
-//     }
-//     console.log(query);
-//     $.getJSON(base_url, query, callback);
-// }
-
-// function displayData(data) {
-//     var results = "";
-//     console.log(data);
-
-//     if (data.items) {
-//         state.next = data.nextPageToken;
-//         console.log("state.next", state.next);
-//         state.previous = data.prevPageToken;
-//         console.log("state.previous", state.previous);
-//         state.results = true;
-
-//         // items is specific to the YT API
-//         data.items.map(function (video) {
-          
-//             results += `<div class="videoChoices thumbnail pointer" data-bind="click: $parent.AddSearchResultToList">
-//             <a id="${video.id.videoId}" target="_self">${video.snippet.title}</a><br />
-//             <img src="${video.snippet.thumbnails.medium.url}" class="videoThumbnail" /></div><br />`;
-//         })
-//     }
-//     else {
-//         if (state.results === false) {
-//             $('.img-container').empty();
-//         }
-//         else {
-//             results += "<p>no results</p>";
-//         }
-//     }
-
-//     if (state.previous) { 
-//         $('#prevBtn').removeClass('hide');
-//     }
-
-//     if (state.next) {
-//         $('#nextBtn').removeClass('hide');     
-//     }
-    
-//     $('.img-container').html(results);
-// }
-
-// $('#search').submit(function (event) {
-//     event.preventDefault();
-//     var userInput = $('form input').val();
-//     getData(userInput, displayData);
-// })
-
-// $('#nextBtn').click(function (event) {
-//     var userInput = $('form input').val();
-//     getData(userInput, displayData, state.next);
-// })
-
-// $('#prevBtn').click(function (event) {
-//     var userInput = $('form input').val();
-//     getData(userInput, displayData, state.previous);
-// })
-
-
-
-
-
-
-// $('body').on('click', '.videoChoices a', function(event){
-//   event.preventDefault();
-//   console.log("Play video pressed")
-//   // 2. This code loads the IFrame Player API code asynchronously.
-//   var tag = document.createElement('script');
-
-//   tag.src = "https://www.youtube.com/iframe_api";
-//   var firstScriptTag = document.getElementsByTagName('script')[0];
-//   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-//   // 3. This function creates an <iframe> (and YouTube player)
-//   //    after the API code downloads.
-//   var player;
-//   function onYouTubeIframeAPIReady() {
-//     player = new YT.Player('player', {
-//       height: '390',
-//       width: '640',
-//       videoId: 'M7lc1UVf-VE',
-//       events: {
-//         'onReady': onPlayerReady
-//       // 'onStateChange': onPlayerStateChange
-//       }
-//     });
-//   }
-
-//   function onPlayerReady(event) {
-//     console.log("onPlayerReady")
-//     event.target.playVideo();
-//   }
-// })
-
-// function playVideo() {
-//   console.log("Play video pressed")
-//   // 2. This code loads the IFrame Player API code asynchronously.
-//   var tag = document.createElement('script');
-
-//   tag.src = "https://www.youtube.com/iframe_api";
-//   var firstScriptTag = document.getElementsByTagName('script')[0];
-//   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-//   // 3. This function creates an <iframe> (and YouTube player)
-//   //    after the API code downloads.
-//   var player;
-//   function onYouTubeIframeAPIReady() {
-//     player = new YT.Player('player', {
-//       height: '390',
-//       width: '640',
-//       videoId: 'M7lc1UVf-VE',
-//       events: {
-//         'onReady': onPlayerReady
-//       // 'onStateChange': onPlayerStateChange
-//       }
-//     });
-//   }
-
-//   function onPlayerReady(event) {
-//     console.log("onPlayerReady")
-//     event.target.playVideo();
-//   }
-
-// }
-// playVideo();
-
-
-
-// console.log(tag)
-// 4. The API will call this function when the video player is ready.
-
-
-// 5. The API calls this function when the player's state changes.
-//    The function indicates that when playing a video (state=1),
-//    the player should play for six seconds and then stop.
-// var done = false;
-
-
-
-// function onPlayerStateChange(event) {
-// // if (event.data == YT.PlayerState.PLAYING && !done) {
-// //   setTimeout(stopVideo, 6000);
-// //   done = true;
-// // }
-// }
-
-// function stopVideo() {
-// player.stopVideo();
-// }
-
-// function playPauseVideo() {
-// 	console.log(player.getPlayerState())
-// 	if (player.getPlayerState() === 1) {
-// 		// runs if video playing
-// 		$('#pauseBtn').text('Start');
-// 		player.pauseVideo();
-// 	} else if (player.getPlayerState() === 2) {
-// 		// runs if video paused
-// 		$('#pauseBtn').text('Pause');
-// 		player.playVideo();
-// 	}
-// }
-
-// $('#pauseBtn').on('click', function(e){
-//   e.preventDefault();
-//   playPauseVideo();
-// })
-
-// $('#prevBtn').on('click', function(e){
-//   e.preventDefault();
-//   console.log(player.getPlayerState())
-//   player.previousVideo();
-// })
-
-// $('#nextBtn').on('click', function(e){
-// 	e.preventDefault();
-// 	player.nextVideo();
-// })
-
