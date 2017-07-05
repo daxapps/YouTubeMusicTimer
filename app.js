@@ -1,148 +1,199 @@
-var YouTubeKey = "AIzaSyBZw_Dg7LohwJhi_O7ZOOz--qFthIyVlFM";
+// var YouTubeKey = "AIzaSyBZw_Dg7LohwJhi_O7ZOOz--qFthIyVlFM";
 
-var YouTubeScript = document.createElement("script");
-YouTubeScript.src = "https://www.youtube.com/iframe_api";
-document.head.appendChild(YouTubeScript);
+// var YouTubeScript = document.createElement("script");
+// YouTubeScript.src = "https://www.youtube.com/iframe_api";
+// document.head.appendChild(YouTubeScript);
 
-function onYouTubeIframeAPIReady() { 
-  ko.applyBindings(new Model()); 
+// function onYouTubeIframeAPIReady() { 
+//   ko.applyBindings(new Model()); 
+// }
+
+// function ItemModel(Options) {
+//   Options = Options || {};
+//   var Item = {}; 
+//   Item.Code = Options.Code;
+//   Item.Title = Options.Title || ("Untitled (" + Options.Code + ")");
+//   Item.StartAt = ko.observable(Options.StartAt || 0);
+//   return Item;
+// }
+
+// function Model() {
+//   Self = this;
+//   Self.List = ko.observableArray();
+//   Self.Filter = ko.observable();
+//   Self.FilteredList = ko.computed(FilteredList).extend({ "throttle": 100 });
+//   Self.SearchResults = ko.observableArray();
+//   var LocalStorageKey = "YouTubePlaylist";
+
+//   Self.InputValue = ko.observable();
+
+//   Self.ProcessInput = function() {
+//     var Input = Self.InputValue();
+
+//     var Expression = /^https?:\/\/(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube(?:-nocookie)?\.com\S*[^\w\s-])([\w-]{11})(?=[^\w-]|$)(?![?=&+%\w.-]*(?:['"][^<>]*>|<\/a>))[?=&+%\w.-]*/ig;
+//     var Match = Expression.exec(Input);
+//     if (Match && Match[1] && Match[1].length == 11) {
+//       AddVideoByCode(Match[1]);
+//     } else {
+//       SearchYouTube(Input);
+//     }
+//   }
+
+//   Self.AddToList = function(Code, Title) {
+//     Self.List.push(new ItemModel({ "Code": Code, "Title": Title }));
+//   }
+
+//   function SearchYouTube(Query) {
+//     JSONP.get (
+//       "https://www.googleapis.com/youtube/v3/search",
+//       {
+//         "part": "snippet",
+//         "q": Query,
+//         "maxResults": 5,
+//         "key": YouTubeKey
+//       },
+//       function(Data) {
+//         Self.SearchResults.removeAll();
+//         ((Data).items).forEach(function(video) {
+//           video = video;
+//           var snippet = video.snippet;
+//           var title = snippet.title;
+//           var video_id = (video.id).videoId;
+//           var author = snippet.channelTitle;
+//           var thumbnails = (snippet.thumbnails);
+//           var thumbnail_url = (thumbnails[Object.keys(thumbnails)[0]]).url;
+//           var SearchResult =
+//           {
+//             "Code": video_id,
+//             "Title": title,
+//             "Author": author,
+//             "ThumbnailURL": thumbnail_url,
+//             "Duration": 0
+//           };
+
+//           Self.SearchResults.push(SearchResult);
+//         });
+//       });
+//   }
+
+//   Self.Current = ko.observable();
+
+//   Self.Play = function(Item) {
+//     Player.loadVideoById(Item.Code, Item.StartAt());
+//     Self.Current(Item);
+//   }
+
+//   Self.List.subscribe(function() {
+//     if (Self.List().length == 0) {
+//       if (Player && Self.Current()) Player.stopVideo();
+//       return;
+//     }
+
+//     if (!Self.Current()) Self.PlaySomething();
+//   });
+
+//   Self.PlaySomething = function() {
+//     $('.input-group, #video').hide();
+//     var List = Self.FilteredList();
+//     Item = List[~~(Math.random() * List.length)];
+//     if (!Item) return;
+//   }
+
+//   Self.VideoStateChangeHandler = function(E) {
+//     if (E.data == YT.PlayerState.ENDED){
+//       if (Self.Loop()) Self.Play(Self.Current());
+//       else Self.PlaySomething();
+//     }
+//   }
+
+//   Self.Select = function(Model, Event) { 
+//     Event.toElement.select(); 
+//   }
+
+//   Self.ClearInput = function() {
+//     Self.InputValue("");
+//     Self.SearchResults.removeAll();
+//   }
+
+//   Player = new YT.Player ( 
+//     "player-container",
+//     { "events":
+//     { "onStateChange": Self.VideoStateChangeHandler,
+//     "onReady": onPlayerReady
+//   }
+// });
+
+//   function onPlayerReady(event) {
+//     event.target.playVideo();
+//   }
+
+//   // This is the callback for a computed observable, defined above.
+//   function FilteredList() {
+//     if (!Self.Filter()) return Self.List();
+//     return Self.List().filter(function(V) { 
+//       return V.Title.toLowerCase().indexOf(Self.Filter().toLowerCase()) > -1; 
+//     });
+//   }
+
+//   Self.AddSearchResultToList = function() { 
+//     $('.timer, .video').show();
+//     $('.restart-btn, .stop-btn').hide();
+//     Self.AddToList(this.Code, this.Title);
+//     Self.ClearInput();
+//   }
+
+// }
+
+api = "AIzaSyBZw_Dg7LohwJhi_O7ZOOz--qFthIyVlFM";
+query = "";
+result = [''];
+
+function timeEncode(time) {
+    mm = time / 60;
+    ss = time % 60;
+    mm = Math.floor(mm);
+    ss = Math.floor(ss);
+    if (ss < 10) {ss = "0" + ss;}
+    result = mm + ":" + ss;
+    return result;
 }
 
-function ItemModel(Options) {
-  Options = Options || {};
-  var Item = {}; 
-  Item.Code = Options.Code;
-  Item.Title = Options.Title || ("Untitled (" + Options.Code + ")");
-  Item.StartAt = ko.observable(Options.StartAt || 0);
-  return Item;
+function download(i, id) {
+    link = "https://www.youtubeinmp3.com/fetch/?format=JSON&filesize=1&bitrate=1&video=http://www.youtube.com/watch?v=" + id;
+    $.getJSON(link, function(response) {
+        $("a[data-id='"+id+"']").attr("href", response.link);
+        $("span[data-time='"+id+"']").html(timeEncode(response.length));
+        $("span[data-bit='"+id+"']").html(response.bitrate+" Kbps");
+        $("span[data-size='"+id+"']").html((response.filesize/1048576).toFixed(2)+" MB");
+    });
 }
-
-function Model() {
-  Self = this;
-  Self.List = ko.observableArray();
-  Self.Filter = ko.observable();
-  Self.FilteredList = ko.computed(FilteredList).extend({ "throttle": 100 });
-  Self.SearchResults = ko.observableArray();
-  var LocalStorageKey = "YouTubePlaylist";
-
-  Self.InputValue = ko.observable();
-
-  Self.ProcessInput = function() {
-    var Input = Self.InputValue();
-
-    var Expression = /^https?:\/\/(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube(?:-nocookie)?\.com\S*[^\w\s-])([\w-]{11})(?=[^\w-]|$)(?![?=&+%\w.-]*(?:['"][^<>]*>|<\/a>))[?=&+%\w.-]*/ig;
-    var Match = Expression.exec(Input);
-    if (Match && Match[1] && Match[1].length == 11) {
-      AddVideoByCode(Match[1]);
-    } else {
-      SearchYouTube(Input);
-    }
-  }
-
-  Self.AddToList = function(Code, Title) {
-    Self.List.push(new ItemModel({ "Code": Code, "Title": Title }));
-  }
-
-  function SearchYouTube(Query) {
-    JSONP.get (
-      "https://www.googleapis.com/youtube/v3/search",
-      {
-        "part": "snippet",
-        "q": Query,
-        "maxResults": 5,
-        "key": YouTubeKey
-      },
-      function(Data) {
-        Self.SearchResults.removeAll();
-        ((Data).items).forEach(function(video) {
-          video = video;
-          var snippet = video.snippet;
-          var title = snippet.title;
-          var video_id = (video.id).videoId;
-          var author = snippet.channelTitle;
-          var thumbnails = (snippet.thumbnails);
-          var thumbnail_url = (thumbnails[Object.keys(thumbnails)[0]]).url;
-          var SearchResult =
-          {
-            "Code": video_id,
-            "Title": title,
-            "Author": author,
-            "ThumbnailURL": thumbnail_url,
-            "Duration": 0
-          };
-
-          Self.SearchResults.push(SearchResult);
-        });
-      });
-  }
-
-  Self.Current = ko.observable();
-
-  Self.Play = function(Item) {
-    Player.loadVideoById(Item.Code, Item.StartAt());
-    Self.Current(Item);
-  }
-
-  Self.List.subscribe(function() {
-    if (Self.List().length == 0) {
-      if (Player && Self.Current()) Player.stopVideo();
-      return;
-    }
-
-    if (!Self.Current()) Self.PlaySomething();
+function song(i, id){
+  url = "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" + id + "&key=" + api;
+  $.getJSON(url, function(json) {
+      songTitle = json.items[0].snippet.title;
+      link = "https://ytqck.github.io/play?id="+id;
+      result[i] = '<div class="sc"><div class="sci"><div class="sciup"><div class="songT"><h3><a href="'+link+'">'+songTitle+'</a></h3></div></div></div></div>';
+      
+      $(".result").append(result[i]);
+  });
+  download(i, id);
+}
+$(document).ready(function(){
+  url = window.location.href.split("?");
+  param = new URLSearchParams(url[1]);
+  query = param.getAll("q");
+  document.title = query + "Music Search";
+  $("#query").val(query);
+  query += " song";
+  searchAPI = 'https://www.googleapis.com/youtube/v3/search?part=id&q=' + query + '&type=video&maxResults=10&key=' + api;
+  $.getJSON(searchAPI, function(json) {
+      //id = json.items[0].id.videoId;
+      $.each(json.items, function(index, value) {
+        song(index, value.id.videoId);
+      })
   });
 
-  Self.PlaySomething = function() {
-    $('.input-group, #video').hide();
-    var List = Self.FilteredList();
-    Item = List[~~(Math.random() * List.length)];
-    if (!Item) return;
-  }
-
-  Self.VideoStateChangeHandler = function(E) {
-    if (E.data == YT.PlayerState.ENDED){
-      if (Self.Loop()) Self.Play(Self.Current());
-      else Self.PlaySomething();
-    }
-  }
-
-  Self.Select = function(Model, Event) { 
-    Event.toElement.select(); 
-  }
-
-  Self.ClearInput = function() {
-    Self.InputValue("");
-    Self.SearchResults.removeAll();
-  }
-
-  Player = new YT.Player ( 
-    "player-container",
-    { "events":
-    { "onStateChange": Self.VideoStateChangeHandler,
-    "onReady": onPlayerReady
-  }
-});
-
-  function onPlayerReady(event) {
-    event.target.playVideo();
-  }
-
-  // This is the callback for a computed observable, defined above.
-  function FilteredList() {
-    if (!Self.Filter()) return Self.List();
-    return Self.List().filter(function(V) { 
-      return V.Title.toLowerCase().indexOf(Self.Filter().toLowerCase()) > -1; 
-    });
-  }
-
-  Self.AddSearchResultToList = function() { 
-    $('.timer, .video').show();
-    $('.restart-btn, .stop-btn').hide();
-    Self.AddToList(this.Code, this.Title);
-    Self.ClearInput();
-  }
-
-}
+})
 
 // =======================================
 // Timer
