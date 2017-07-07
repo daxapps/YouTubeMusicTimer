@@ -10,10 +10,8 @@
   <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous">
-  </script>
+  crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <script src="https://use.fontawesome.com/252c5ef56b.js"></script>
   <link href="main.css" rel="stylesheet" type="text/css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.0.0/knockout-min.js"></script>
   <script src="https://rawgit.com/IntoMethod/Lightweight-JSONP/master/jsonp.js"></script>
@@ -41,21 +39,16 @@
     
     <div class="video-container">
       <div class="padded">
-        <!-- <form class="form-signin" action="#" data-bind="submit: ProcessInput"> -->
-        <form action="#" id="sf" onsubmit="return q.value!=''" role="search">
+        <form class="form-signin" action="#" data-bind="submit: ProcessInput">
           <div class="input-group input-group-lg">
             <h2 class="form-signin-heading">Search for type of music</h2>
-            <!-- <input type="text" class="form-control" id="search" data-bind="value: InputValue" placeholder="Music Genre" required autofocus> -->
-            <input type="search" name="q" maxlength="2048" autocomplete="off" autocorrect="off" autofocus>
-            <!-- <button class="search-btn btn btn-lg btn-primary btn-block" type="submit" data-bind="value: InputValue">Search</button> -->
-            <button class="sb" id="msb" name="btn" value="direct" type="submit">
-                <div class="sbi"></div>
-            </button>
+            <input type="text" class="form-control" id="search" data-bind="value: InputValue" placeholder="Music Genre" required autofocus>
+            <button class="search-btn btn btn-lg btn-primary btn-block" type="submit" data-bind="value: InputValue">Search</button>
           </div>
         </form>
       </div>
 
-      <!-- <div class="row search-results" data-bind="foreach: SearchResults">  
+      <div class="row search-results" data-bind="foreach: SearchResults">  
         <div class="thumbnail pointer" data-bind="click: $parent.AddSearchResultToList">
           <p class="ellipsis search-result-title caption" data-bind="text: Title"></p> 
           <img class="result-img" data-bind="attr: { src: ThumbnailURL }">
@@ -69,20 +62,6 @@
           </div>
           <div id="player-container" ></div>
         </div>
-      </div> -->
-      <div class="result">
-        
-      </div>
-      <div id="player_bar">
-        <i class="fa fa-step-backward player_icons grey-text"></i>
-        <i class="fa fa-play-circle-o player_icons play" id="play-pause"></i>
-        <i class="fa fa-step-forward player_icons grey-text" id="next-play"></i>
-        <input type="range" min="0" max="100" step="1" value="90" id="volume" />
-        <i class="fa fa-volume-up white-text" id="mute"></i>
-        <span class="time_complete time white-text" id="currentTime">00:00</span>
-        <input type="range" min="0" max="1000" step="1" value="0" id="seekbar" />
-        <span class="total_time time white-text" id="duration">00:00</span>
-        <i class="fa fa-repeat padding-left-10 grey-text" id="loop"></i>
       </div>
     </div>
     
