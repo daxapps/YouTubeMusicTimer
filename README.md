@@ -1,4 +1,6 @@
 # YouTubeMusicTimer
+[Click to use app](https://daxapps.github.io/YouTubeMusicTimer/)
+
 A web application that enables a user to set a timer to play music from YouTube.
 
 This is a web application uses HTML5, CSS3, Javascript, jQuery, AJAX, and KnockoutJS.
@@ -30,4 +32,4 @@ Clone or download the project, then open the HTML file in your favorite browser.
 
 ## License
 
-The content of this repository is licensed under a [Apache License] (http://www.apache.org/licenses/LICENSE-2.0.html)
+The content of this repository is licensed under an [Apache License](http://www.apache.org/licenses/LICENSE-2.0.html)
