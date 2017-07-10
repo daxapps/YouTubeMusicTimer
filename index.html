@@ -20,20 +20,41 @@
 
 <body>
   <main role="main" class="container">
-
+    <h1>YT Music Timer</h1>
     <div class="timer">
-      <h1>Music Timer</h1>
+      
+      
       <br>
       <h2 id="t">00m 00s</h2>
+      <p id="set-timer-label">Set Timer</p>
       <div class="timer-inputs">
-      <input type="text" class="form-control" id="min" placeholder = "Minutes" autofocus>
-        <input type="text" class="form-control" id="sec" placeholder = "Seconds" autofocus>
+        <!-- <input type="text" class="form-control" id="min" placeholder = "Minutes" autofocus> -->
+        <select name="" id="min">
+          <option value="">Minutes</option>
+          <option value="60">60</option>
+          <option value="45">45</option>
+          <option value="30">30</option>
+          <option value="15">15</option>
+          <option value="10">10</option>
+          <option value="5">5</option>
+        </select>
+        
+        <!-- <input type="text" class="form-control" id="sec" placeholder = "Seconds" autofocus> -->
+        <select name="" id="sec">
+          <option value="">Seconds</option>
+          <option value="60">60</option>
+          <option value="45">45</option>
+          <option value="30">30</option>
+          <option value="15">15</option>
+          <option value="10">10</option>
+          <option value="5">5</option>
+        </select>
       </div>
       <div class="timer-btns">
       <button class=" start-btn btn btn-sm btn-primary btn-block">Start</button>
         <button class="restart-btn btn btn-md btn-primary btn-block">Start</button>
         <button class=" stop-btn btn btn-md btn-primary btn-block">Pause</button>
-        <button class="restart-music-search-btn btn btn-sm btn-primary btn-block">Search for another video</button>
+        <button class="restart-music-search-btn btn btn-sm btn-primary btn-block">Select another video</button>
       </div>
     </div>
     
@@ -41,9 +62,32 @@
       <div class="padded">
         <form class="form-signin" action="#" data-bind="submit: ProcessInput">
           <div class="input-group input-group-lg">
-            <h2 class="form-signin-heading">Search for type of music</h2>
-            <input type="text" class="form-control" id="search" data-bind="value: InputValue" placeholder="Music Genre" required autofocus>
-            <button class="search-btn btn btn-lg btn-primary btn-block" type="submit" data-bind="value: InputValue">Search</button>
+            <!-- <h2 class="form-signin-heading">Select type of music</h2> -->
+            <!-- <input type="text" class="form-control" id="search" data-bind="value: InputValue" placeholder="Music Genre" required autofocus> -->
+            <select name="" id="search" data-bind="value: InputValue">
+              <option value="">Select Music</option>
+              <optgroup label="Study Music">
+                <option value="WPni755-Krg">Alpha Waves: Relaxing</option>
+                <option value="i52pWPcU-bE">Alpha Waves: Increase Creativity</option>
+                <option value="5LXhPbmoHmU">Alpha Waves: Focus</option>
+              </optgroup>
+              <optgroup label="Industrial">
+                <option value="c0WActw9OpI">Industrial Megamix</option>
+                <option value="2bzgzxvVaBs">Metal Compilation</option>
+                <option value="xjQv1zElEu4">Club Mix</option>
+              </optgroup>
+              <optgroup label="Techno">
+                <option value="kNTNOaxx_QU">Best of 2017</option>
+                <option value="urkp8wV-dmo">Best of 2016</option>
+                <option value="zPv2txe2MFc">Best of 2009-2017</option>
+              </optgroup>
+              <optgroup label="Classic Rock">
+                <option value="dfLUn2eDz9o">100 Best</option>
+                <option value="DP13mvVR93w">Greatest Hits</option>
+                <option value="XDBX9WSLN1M">Greatest 70's</option>
+              </optgroup>
+            </select>
+            <button class="search-btn btn btn-lg btn-primary btn-block" type="submit" data-bind="value: InputValue">View Thumbnail</button>
           </div>
         </form>
       </div>
@@ -52,6 +96,7 @@
         <div class="thumbnail pointer" data-bind="click: $parent.AddSearchResultToList">
           <p class="ellipsis search-result-title caption" data-bind="text: Title"></p> 
           <img class="result-img" data-bind="attr: { src: ThumbnailURL }">
+          <p>Click to Play</p>
         </div>
       </div>
 

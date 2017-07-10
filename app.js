@@ -49,7 +49,7 @@ function Model() {
       {
         "part": "snippet",
         "q": Query,
-        "maxResults": 5,
+        "maxResults": 1,
         "key": YouTubeKey
       },
       function(Data) {
@@ -178,7 +178,7 @@ function startSec(){
 }
 
 function startTimer(){
-  $('.start-btn').hide()
+  $('.start-btn, #set-timer-label').hide()
   $('.stop-btn').show()
   tmin = document.getElementById("min").value;
   tsec = document.getElementById("sec").value;
