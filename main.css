@@ -3,19 +3,46 @@
 }
 
 body {
-	background-color: black;
+	background: url("musicbg.gif") no-repeat center center fixed;
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+
+}
+
+@font-face {
+	font-family: stilltime;
+	src: url(stilltime.ttf);
+}
+
+h1 {
+	font-family: stilltime;
+	font-size: 5em;
+	text-align: center;
+	color: red;
+}
+
+.btn {
+	background-color: #00FF01 !important;
+	color: black;
 }
 
 .container {
-	max-width: 300px;
+	max-width: 350px;
 	margin: 0 auto;
-	background-color: lightgray;
-	border: 2px solid gray;
-	border-radius: 6px;
+	background-color: transparent;
+	/*border: 2px solid yellow;*/
+	/*border-radius: 100%;*/
 }
 
 .video-container {
 	text-align: center;
+	/*border: 10px solid red;*/
+}
+
+iframe {
+	/*border: 20px solid red;*/
 }
 
 #search {
@@ -23,6 +50,12 @@ body {
 	margin: 0px auto 25px auto;
 	border-radius: 3px;
 	height: 45px;
+}
+
+.inputs {
+	background-color: lightblue;
+	margin: 10px 0;
+	height: 2em;
 }
 
 /*optgroup[label] {
@@ -42,6 +75,13 @@ form {
 	margin-bottom: 0px;
 }
 
+#t {
+	color: yellow;
+}
+
+#set-timer-label {
+	color: #004DE5;
+}
 .timer {
 	display: block;
 	text-align: center;
@@ -60,6 +100,11 @@ form {
 	margin: 20px auto;
 }
 
+.timer-btns>button {
+	margin: 15px 0;
+	border-radius: 4px;
+}
+
 h3 {
 	font-size: 14px;
 	margin-top: 0;
@@ -69,6 +114,7 @@ h3 {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
+	color: #FF6600;
 }
 
 .search-results {
@@ -90,4 +136,11 @@ iframe {
 	width: 100% !important;
 	height: 100% !important;
 	margin: 0 auto;
+}
+
+.pointer {
+	/*height: 120px;
+	width: 180px !important;*/
+	background-color: darkgray;
+	border: 3px solid #004DE5;
 }
