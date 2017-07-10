@@ -22,7 +22,12 @@ body {
 	display: block;
 	margin: 0px auto 25px auto;
 	border-radius: 3px;
+	height: 45px;
 }
+
+/*optgroup[label] {
+	font-weight: bold;
+}*/
 
 .padded {
 	display: inline-block;
