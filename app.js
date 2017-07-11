@@ -137,7 +137,7 @@ function Model() {
 
   Self.AddSearchResultToList = function() { 
     $('.timer, .video').show();
-    $('.restart-btn, .stop-btn').hide();
+    $('.restart-btn, .stop-btn, .restart-music-search-btn').hide();
     Self.AddToList(this.Code, this.Title);
     Self.ClearInput();
   }
@@ -199,7 +199,7 @@ function stopTimer(){
 
 $('.start-btn').on("click", function(e) {
   startTimer();
-  $('#video').show();
+  $('#video, .restart-music-search-btn').show();
   $('.restart-btn').hide();
 })
 

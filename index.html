@@ -50,9 +50,9 @@
         </select>
       </div>
       <div class="timer-btns">
-      <button class=" start-btn btn btn-sm btn-primary btn-block">Start</button>
-        <button class="restart-btn btn btn-md btn-primary btn-block">Start</button>
-        <button class=" stop-btn btn btn-md btn-primary btn-block">Pause</button>
+      <button class=" start-btn btn btn-sm btn-primary btn-block">Start Timer</button>
+        <button class="restart-btn btn btn-md btn-primary btn-block">Start Timer</button>
+        <button class="stop-btn btn btn-md btn-primary btn-block">Pause Timer</button>
         <button class="restart-music-search-btn btn btn-sm btn-primary btn-block">Select another video</button>
       </div>
     </div>
@@ -66,7 +66,7 @@
             <select name="" id="search" class="inputs" data-bind="value: InputValue">
               <option value="">Select Music</option>
               <optgroup label="Study Music">
-                <option value="WPni755-Krg">Alpha Waves: Relaxing</option>
+                <option type="submit" value="WPni755-Krg" onSelect="submit()">Alpha Waves: Relaxing</option>
                 <option value="i52pWPcU-bE">Alpha Waves: Increase Creativity</option>
                 <option value="5LXhPbmoHmU">Alpha Waves: Focus</option>
               </optgroup>
@@ -95,7 +95,8 @@
         <div class="thumbnail pointer" data-bind="click: $parent.AddSearchResultToList">
           <p class="ellipsis search-result-title caption" data-bind="text: Title"></p> 
           <img class="result-img" data-bind="attr: { src: ThumbnailURL }">
-          <p>Click to Play</p>
+          </br>
+          <p><strong>Click to Play</strong></p>
         </div>
       </div>
 
