@@ -197,6 +197,17 @@ function stopTimer(){
   x = clearTimeout(x)
 }
 
+$('.input-group').change(function(e){ 
+  // if input value !null=>
+  if($('.search-btn').attr('value')) {
+    console.log('SearchBtn has value')
+    $('.search-btn').click(); 
+
+    $('.row').show();//??
+  }
+
+});
+
 $('.start-btn').on("click", function(e) {
   startTimer();
   $('#video, .restart-music-search-btn').show();
@@ -224,7 +235,7 @@ $('.restart-music-search-btn').on('click', function(e) {
 })
 
 function renderInitialView() {
-  $('.timer, #video').hide();
+  $('.timer, #video, .search-btn').hide();
 }
 
 $(function() {

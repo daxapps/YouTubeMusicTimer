@@ -26,6 +26,11 @@ h1 {
 .btn {
 	background-color: #00FF01 !important;
 	color: black;
+	margin: 20px auto;
+	width: 129px;
+	height: 30px;
+	padding: 5px 10px;
+
 }
 
 .container {
@@ -95,15 +100,16 @@ form {
 	margin: 20px auto;
 }
 
-.timer-btns {
-	width: 65%;
+/*.timer-btns {
+	width: 129px;
+	height: 30px;
 	margin: 20px auto;
 }
 
 .timer-btns>button {
 	margin: 15px 0;
 	border-radius: 4px;
-}
+}*/
 
 h3 {
 	font-size: 14px;
