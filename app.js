@@ -231,6 +231,7 @@ $('.stop-btn').on("click", function(e) {
 
 $('.restart-music-search-btn').on('click', function(e) {
   e.preventDefault();
+  $('.search-btn').attr('value') === '';
   location.reload();
 })
 
