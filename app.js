@@ -208,6 +208,18 @@ $('.input-group').change(function(e){
 
 });
 
+$('.instructions-btn').on('click', function(e) {
+  e.preventDefault();
+  $('.instructions-btn').hide();
+  $('.instructions, .hide-instructions-btn').show();
+})
+
+$('.hide-instructions-btn').on('click', function(e) {
+  e.preventDefault();
+  $('.instructions-btn').show();
+  $('.instructions, .hide-instructions-btn').hide();
+})
+
 $('.start-btn').on("click", function(e) {
   startTimer();
   $('#video, .restart-music-search-btn').show();
@@ -236,7 +248,7 @@ $('.restart-music-search-btn').on('click', function(e) {
 })
 
 function renderInitialView() {
-  $('.timer, #video, .search-btn').hide();
+  $('.timer, #video, .search-btn, .instructions, .hide-instructions-btn').hide();
 }
 
 $(function() {
