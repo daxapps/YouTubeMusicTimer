@@ -41,17 +41,10 @@ h1 {
 	max-width: 350px;
 	margin: 0 auto;
 	background-color: transparent;
-	/*border: 2px solid yellow;*/
-	/*border-radius: 100%;*/
 }
 
 .video-container {
 	text-align: center;
-	/*border: 10px solid red;*/
-}
-
-iframe {
-	/*border: 20px solid red;*/
 }
 
 #search {
@@ -65,11 +58,8 @@ iframe {
 	background-color: lightblue;
 	margin: 10px 0;
 	height: 2em;
+	text-align: center;
 }
-
-/*optgroup[label] {
-	font-weight: bold;
-}*/
 
 .padded {
 	display: inline-block;
@@ -100,20 +90,9 @@ form {
 }
 
 .timer-inputs {
-	width: 40%;
+	width: 31%;
 	margin: 20px auto;
 }
-
-/*.timer-btns {
-	width: 129px;
-	height: 30px;
-	margin: 20px auto;
-}
-
-.timer-btns>button {
-	margin: 15px 0;
-	border-radius: 4px;
-}*/
 
 h3 {
 	font-size: 14px;
@@ -149,8 +128,6 @@ iframe {
 }
 
 .pointer {
-	/*height: 120px;
-	width: 180px !important;*/
 	background-color: darkgray;
 	border: 3px solid #004DE5;
 }
