@@ -20,7 +20,7 @@ h1 {
 	font-family: stilltime;
 	font-size: 5em;
 	text-align: center;
-	color: red;
+	color: white;
 }
 
 .instructions p {
@@ -28,7 +28,7 @@ h1 {
 }
 
 .btn {
-	background-color: #00FF01 !important;
+	background-color: #348DEE !important;
 	color: black;
 	margin: 20px auto;
 	width: 129px;
