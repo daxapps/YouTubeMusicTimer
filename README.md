@@ -1,7 +1,7 @@
 # YouTubeMusicTimer
 [Click to use app](https://daxapps.github.io/YouTubeMusicTimer/)
 
-A web application that enables a user to set a timer to play music from YouTube.
+A web application that enables a user to set a timer to play music from YouTube.  When I'm working on my computer, I enjoy listening to music from YouTube.  I also like to set a timer to remind myself to get up and stretch my legs, as well as keep track of time that I spend on the computer. 
 
 This is a web application uses HTML5, CSS3, Javascript, jQuery, AJAX, and KnockoutJS.
 
