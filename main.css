@@ -59,6 +59,15 @@ h1 {
 	margin: 10px 0;
 	height: 2em;
 	text-align: center;
+	cursor: pointer;
+}
+
+option {
+	cursor: pointer;
+}
+
+.thumbnail {
+	cursor: pointer;
 }
 
 .padded {
